@@ -71,24 +71,25 @@ function paint (wallToPaint){
 
 
 
-build ({})
-.then((builtWall)=>{
-    console.log('built Wall', builtWall)
-    planish({})
-    .then((planishWall)=>{
-        console.log ('planish wall', planishWall)
+build({})
+    .then((builtWall) => {
+        console.log('built Wall', builtWall)
+        planish(builtWall)
+            .then((planishWall) => {
+                console.log('planish wall', planishWall)
+                paint(planishWall)
+                    .then((paintWall) => {
+                        console.log('painted wall', paintWall)
+                    })
+            })
+
+            .catch((errorPaint) => {
+                console.error('painted wall', errorPaint)
+            })
+            .catch((errorPlanish) => {
+                console.error('planish error:', errorPlanish)
+            })
     })
-    paint({}) 
-    .then((paintWall)=>{
-        console.log ('painted wall', paintWall)
+    .catch((error) => {
+        console.error('build error:', error)
     })
-    .catch((errorPaint)=>{
-        console.error('painted wall', errorPaint)
-    })
-    .catch((errorPlanish)=>{
-        console.error('planish error:',errorPlanish)
-    })
-})
-.catch ((error) =>{
-    console.error('build error:',error)
-})
