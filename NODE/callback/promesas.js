@@ -71,7 +71,7 @@ function paint (wallToPaint){
 
 
 
-build({})
+build({}) 
     .then((builtWall) => {
         console.log('built Wall', builtWall)
         planish(builtWall)
