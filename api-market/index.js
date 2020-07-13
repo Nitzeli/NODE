@@ -1,8 +1,8 @@
 
-const fs = require ('fs')
-const express = require ('express')
+const fs = require('fs')
+const express = require('express')
 const { response, request } = require('express')
-const app = express ()
+const app = express()
 
 app.use(express.json())
 
@@ -10,11 +10,11 @@ app.use(express.json())
 app.get("/products", (request, response) => {
     const products = JSON.parse(fs.readFileSync('./products.json'))
 
-    console.log (products)
+    console.log(products)
 
     const product = products.products
 
-    response.json ({
+    response.json({
         success: true,
         data: {
             product
@@ -23,56 +23,56 @@ app.get("/products", (request, response) => {
 
 })
 
-app.post("/products" , (request, response) => { 
-    const product = JSON.parse (fs.readFileSync('./products.json'))
+app.post("/products", (request, response) => {
+    const product = JSON.parse(fs.readFileSync('./products.json'))
 
     product.products.push(request.body)
-    const newProduct = JSON.stringify(product,'\n', 2 )
-    fs.writeFileSync("./products.json",newProduct)
+    const newProduct = JSON.stringify(product, '\n', 2)
+    fs.writeFileSync("./products.json", newProduct)
 
-    response.json ({
-        success:true,
-        data: 
+    response.json({
+        success: true,
+        data:
             product.products
-        
+
     })
 })
 
 app.delete("/products/:name", (request, response) => {
     const name = request.params.name
 
-    const product = JSON.parse (fs.readFileSync('./products.json'))
+    const product = JSON.parse(fs.readFileSync('./products.json'))
 
     const filterProducts = product.products.filter((product) => {
         return product.name !== name
     })
 
-product.products = filterProducts
+    product.products = filterProducts
 
-const newProduct = JSON.stringify(product,'\n', 2 )
+    const newProduct = JSON.stringify(product, '\n', 2)
     fs.writeFileSync("./products.json", newProduct)
 
-    response.json ({
+    response.json({
         success: true,
-        data:{
+        data: {
             filterProducts
         }
     })
 })
 
-app.patch ("/products/:name", (request, response)=>{
+app.patch("/products/:name", (request, response) => {
     const currentName = request.params.name
     const newName = request.body.name
     const newPrice = request.body.price
 
-    console.log (currentName)
+    console.log(currentName)
 
-    const product = JSON.parse (fs.readFileSync('./products.json'))
+    const product = JSON.parse(fs.readFileSync('./products.json'))
 
     const mapProduct = product.products.map((product) => {
-        if ( currentName === product.name){
+        if (currentName === product.name) {
 
-            const name = newName  || product.name
+            const name = newName || product.name
             const price = newPrice ? newPrice : product.price
 
             return {
@@ -85,18 +85,18 @@ app.patch ("/products/:name", (request, response)=>{
 
     product.products = mapProduct
 
-    const newProduct = JSON.stringify(product,'\n', 2 )
+    const newProduct = JSON.stringify(product, '\n', 2)
     fs.writeFileSync("./products.json", newProduct)
 
     response.json({
-        success:true,
+        success: true,
         data: mapProduct
     })
-    
+
 })
 
 
 
 app.listen('8080', () => {
-    console.log ('escuchando servidor 8080')
+    console.log('escuchando servidor 8080')
 })
