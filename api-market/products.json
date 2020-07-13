@@ -1,0 +1,12 @@
+{
+  "products": [
+    {
+      "name": "sandia",
+      "price": 10
+    },
+    {
+      "name": "guayaba",
+      "price": 8
+    }
+  ]
+}
