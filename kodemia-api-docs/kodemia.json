@@ -1,0 +1,55 @@
+{
+  "koders": [
+    {
+      "name": "Juan",
+      "gender": "male"
+    },
+    {
+      "name": "Mau",
+      "gender": "male"
+    },
+    {
+      "name": "Nitz",
+      "gender": "male"
+    },
+    {
+      "name": "Mels",
+      "gender": "female"
+    },
+    {
+      "name": "Ili",
+      "gender": "female"
+    },
+    {
+      "name": "Vis",
+      "gender": "male"
+    },
+    {
+      "name": "Nao",
+      "gender": "female"
+    },
+    {
+      "name": "Rodrigo",
+      "gender": "male"
+    },
+    {
+      "name": "Ruben",
+      "gender": "male"
+    },
+    {
+      "name": "Kali",
+      "gender": "female"
+    },
+    {
+      "name": "Ania",
+      "gender": "female"
+    },
+    {
+      "name": "Vis"
+    },
+    {
+      "gender": "male",
+      "name": "charles"
+    }
+  ]
+}
